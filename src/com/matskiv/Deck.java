@@ -8,9 +8,9 @@ import java.util.Scanner;
 public class Deck {
     Scanner scanner = new Scanner(System.in);
     Random random = new Random();
-    List<Cards> cartDeck = new ArrayList<>();
-    PlayerDeck playerDeck = new PlayerDeck();
-    CPUDeck cpuDeck = new CPUDeck();
+    List<Cards> cardDeck = new ArrayList<>();
+    PlayerHand playerHand;
+    CPUHand cpuHand;
 
     Cards chervi2 = new Cards("chervi", 2, "2");
     Cards chervi3 = new Cards("chervi", 3, "3");
@@ -66,60 +66,59 @@ public class Deck {
     Cards krestaTyz = new Cards("kresta", 11, "tyz");
 
     public void createCartDeck() {
-
-        cartDeck.add(chervi2);
-        cartDeck.add(chervi3);
-        cartDeck.add(chervi4);
-        cartDeck.add(chervi5);
-        cartDeck.add(chervi6);
-        cartDeck.add(chervi7);
-        cartDeck.add(chervi8);
-        cartDeck.add(chervi9);
-        cartDeck.add(chervi10);
-        cartDeck.add(cherviValet);
-        cartDeck.add(cherviDama);
-        cartDeck.add(cherviKorol);
-        cartDeck.add(cherviTyz);
-        cartDeck.add(pika2);
-        cartDeck.add(pika3);
-        cartDeck.add(pika4);
-        cartDeck.add(pika5);
-        cartDeck.add(pika6);
-        cartDeck.add(pika7);
-        cartDeck.add(pika8);
-        cartDeck.add(pika9);
-        cartDeck.add(pika10);
-        cartDeck.add(pikaValet);
-        cartDeck.add(pikaDama);
-        cartDeck.add(pikaKorol);
-        cartDeck.add(pikaTyz);
-        cartDeck.add(bybnu2);
-        cartDeck.add(bybnu3);
-        cartDeck.add(bybnu4);
-        cartDeck.add(bybnu5);
-        cartDeck.add(bybnu6);
-        cartDeck.add(bybnu7);
-        cartDeck.add(bybnu8);
-        cartDeck.add(bybnu9);
-        cartDeck.add(bybnu10);
-        cartDeck.add(bybnuValet);
-        cartDeck.add(bybnuDama);
-        cartDeck.add(bybnuKorol);
-        cartDeck.add(bybnuTyz);
-        cartDeck.add(kresta2);
-        cartDeck.add(kresta3);
-        cartDeck.add(kresta4);
-        cartDeck.add(kresta5);
-        cartDeck.add(kresta6);
-        cartDeck.add(kresta7);
-        cartDeck.add(kresta8);
-        cartDeck.add(kresta9);
-        cartDeck.add(kresta10);
-        cartDeck.add(krestaValet);
-        cartDeck.add(krestaDama);
-        cartDeck.add(krestaKorol);
-        cartDeck.add(krestaTyz);
-        System.out.println(cartDeck.size());
+        cardDeck.add(chervi2);
+        cardDeck.add(chervi3);
+        cardDeck.add(chervi4);
+        cardDeck.add(chervi5);
+        cardDeck.add(chervi6);
+        cardDeck.add(chervi7);
+        cardDeck.add(chervi8);
+        cardDeck.add(chervi9);
+        cardDeck.add(chervi10);
+        cardDeck.add(cherviValet);
+        cardDeck.add(cherviDama);
+        cardDeck.add(cherviKorol);
+        cardDeck.add(cherviTyz);
+        cardDeck.add(pika2);
+        cardDeck.add(pika3);
+        cardDeck.add(pika4);
+        cardDeck.add(pika5);
+        cardDeck.add(pika6);
+        cardDeck.add(pika7);
+        cardDeck.add(pika8);
+        cardDeck.add(pika9);
+        cardDeck.add(pika10);
+        cardDeck.add(pikaValet);
+        cardDeck.add(pikaDama);
+        cardDeck.add(pikaKorol);
+        cardDeck.add(pikaTyz);
+        cardDeck.add(bybnu2);
+        cardDeck.add(bybnu3);
+        cardDeck.add(bybnu4);
+        cardDeck.add(bybnu5);
+        cardDeck.add(bybnu6);
+        cardDeck.add(bybnu7);
+        cardDeck.add(bybnu8);
+        cardDeck.add(bybnu9);
+        cardDeck.add(bybnu10);
+        cardDeck.add(bybnuValet);
+        cardDeck.add(bybnuDama);
+        cardDeck.add(bybnuKorol);
+        cardDeck.add(bybnuTyz);
+        cardDeck.add(kresta2);
+        cardDeck.add(kresta3);
+        cardDeck.add(kresta4);
+        cardDeck.add(kresta5);
+        cardDeck.add(kresta6);
+        cardDeck.add(kresta7);
+        cardDeck.add(kresta8);
+        cardDeck.add(kresta9);
+        cardDeck.add(kresta10);
+        cardDeck.add(krestaValet);
+        cardDeck.add(krestaDama);
+        cardDeck.add(krestaKorol);
+        cardDeck.add(krestaTyz);
+        System.out.println(cardDeck.size());
     }
 
     public boolean isTrueCommandStartGame(String command) {
@@ -146,50 +145,74 @@ public class Deck {
         }
     }
 
-    public void getOneCardForCPU() {
-        int choseCard;
-        Cards card;
-        choseCard = random.nextInt(cartDeck.size());
-        card = cartDeck.get(choseCard);
-        cartDeck.remove(choseCard);
-        cpuDeck.cPUCardsDeck.add(card);
+    public boolean isTrueCommandExitGame(String command) {
+        if (command.equals("Exit game")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public void getOneCardForPlayer() {
-        int choseCard;
-        Cards card;
-        choseCard = random.nextInt(cartDeck.size());
-        card = cartDeck.get(choseCard);
-        cartDeck.remove(choseCard);
-        playerDeck.playerCardsDeck.add(card);
+    public void addingValuesCardsPlayer(List<Cards> playerCardsDeck) {
+        int sum = 0;
+        for (int i = 0; i < playerCardsDeck.size(); i++) {
+            sum = sum + playerCardsDeck.get(i).value;
+        }
+        System.out.println("Player score:"+sum);
+    }
+
+    public void addingValuesCardsCPU(List<Cards> cPUCardsDeck) {
+        int sum = 0;
+        for (int i = 0; i < cPUCardsDeck.size(); i++) {
+            sum = sum + cPUCardsDeck.get(i).value;
+        }
+        System.out.println("CPU score:"+sum);
     }
 
     public void doingAll() {
         String command = scanner.nextLine();
+//        PlayerHand playerHand = new PlayerHand();
         if (isTrueCommandStartGame(command)) {
-            getOneCardForPlayer();
-            getOneCardForPlayer();
-            getOneCardForCPU();
-            getOneCardForCPU();
-            System.out.println(cartDeck.size());
-            System.out.println(playerDeck.playerCardsDeck.size());
-            System.out.println(cpuDeck.cPUCardsDeck.size());
-            for(int i =0; i<playerDeck.playerCardsDeck.size(); i++) {
-                System.out.println(playerDeck.playerCardsDeck.get(i).kind + playerDeck.playerCardsDeck.get(i).name);
-            }
-            for(int i=0; i<cpuDeck.cPUCardsDeck.size();i++){
-                System.out.println(cpuDeck.cPUCardsDeck.get(i).kind+cpuDeck.cPUCardsDeck.get(i).name);}}
+            createCartDeck();
+            playerHand = new PlayerHand();
+            cpuHand = new CPUHand();
+//            getOneCardForPlayer(playerCardsDeck);
+//            getOneCardForPlayer(playerCardsDeck);
+            playerHand.getOneCardForPlayerr(cardDeck, random);
+            playerHand.getOneCardForPlayerr(cardDeck, random);
+
+            cpuHand.getOneCardForCPU(cardDeck, random);
+            cpuHand.getOneCardForCPU(cardDeck, random);
+//            showPlayerCardsOnHand(playerCardsDeck);
+
+
+            playerHand.showPlayerCardsOnHand();
+            addingValuesCardsPlayer(playerHand.getPlayerCardsDeck());
+            cpuHand.showCPUCardsOnHand();
+            addingValuesCardsCPU(cpuHand.getcPUCardsDeck());
+            System.out.println(cardDeck.size());
+            System.out.println(playerHand.getPlayerCardsDeck().size());
+            System.out.println(cpuHand.getcPUCardsDeck().size());
+        }
         else if (isTrueCommandGetOneCardPlayer(command)) {
-            getOneCardForPlayer();
-            System.out.println(cartDeck.size());
-            System.out.println(playerDeck.playerCardsDeck.size());
-            System.out.println(cpuDeck.cPUCardsDeck.size());
+            playerHand.getOneCardForPlayerr(cardDeck,random);
+            playerHand.showPlayerCardsOnHand();
+            addingValuesCardsPlayer(playerHand.getPlayerCardsDeck());
+            System.out.println(cardDeck.size());
+            System.out.println(playerHand.getPlayerCardsDeck().size());
+            System.out.println(cpuHand.getcPUCardsDeck().size());
         } else if (isTrueCommandGetOneCardCPU(command)) {
-            getOneCardForCPU();
-            System.out.println(cartDeck.size());
-            System.out.println(playerDeck.playerCardsDeck.size());
-            System.out.println(cpuDeck.cPUCardsDeck.size());
-        } else {
+            cpuHand.getOneCardForCPU(cardDeck,random);
+            cpuHand.showCPUCardsOnHand();
+            addingValuesCardsCPU(cpuHand.getcPUCardsDeck());
+            System.out.println(cardDeck.size());
+            System.out.println(playerHand.getPlayerCardsDeck().size());
+            System.out.println(cpuHand.getcPUCardsDeck().size());
+        } else if(isTrueCommandExitGame(command)){
+            cardDeck.clear();
+            playerHand.getPlayerCardsDeck().clear();
+            cpuHand.getcPUCardsDeck().clear(); }
+            else {
             System.out.println("You entered invalid information");
         }
     }

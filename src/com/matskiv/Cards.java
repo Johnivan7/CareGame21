@@ -1,7 +1,5 @@
 package com.matskiv;
 
-import java.util.ArrayList;
-
 public class Cards {
     String kind;
     int value;
@@ -11,7 +9,5 @@ public class Cards {
     this.kind = kind;
     this.value = value;
     this.name = name;
-
-
     }
 }
