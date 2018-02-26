@@ -2,33 +2,23 @@ package com.matskiv;
 
 public class Referee {
 
-    public void compareResults(int scoreOfPlayer, int scoreOfCPU) {
+    public String compareResults(int scoreOfPlayer, int scoreOfCPU) {
         if (scoreOfPlayer > 21 && scoreOfCPU > 21) {
-            System.out.println("You both lost");
+            return "draw";
         } else if (scoreOfPlayer <= 21 && scoreOfCPU <= 21) {
             if (scoreOfPlayer > scoreOfCPU) {
-                System.out.println("Winner is a Player");
-                System.out.println("Player scores are " + scoreOfPlayer);
-                System.out.println("CPU scores are " + scoreOfCPU);
+                return "player";
             } else if (scoreOfPlayer < scoreOfCPU) {
-                System.out.println("Winner is a CPU");
-                System.out.println("CPU scores are " + scoreOfCPU);
-                System.out.println("Player scores are " + scoreOfPlayer);
+                return "cpu";
             } else if (scoreOfPlayer == scoreOfCPU) {
-                System.out.println("Equal scores");
-                System.out.println("CPU scores are " + scoreOfCPU);
-                System.out.println("Player scores are " + scoreOfPlayer);
+                return "draw";
             }
         } else if (scoreOfPlayer <= 21) {
             {
-                System.out.println("Winner is a Player");
-                System.out.println("Player scores are " + scoreOfPlayer);
-                System.out.println("CPU scores are " + scoreOfCPU);
+                return "player";
             }
         } else if (scoreOfCPU <= 21) {
-            System.out.println("Winner is a CPU");
-            System.out.println("Player scores are " + scoreOfPlayer);
-            System.out.println("CPU scores are " + scoreOfCPU);
-        }
+            return "cpu";}
+            return "You dont write correct code for choose a winner";
     }
 }
