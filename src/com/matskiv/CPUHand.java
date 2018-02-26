@@ -14,6 +14,8 @@ public class CPUHand {
         return cPUCardsDeck;
     }
 
+    int scoreOfCPU;
+
     public void getOneCardForCPU(List<Cards> cardDeck, Random random ) {
         int choseCard;
         Cards card;
@@ -28,5 +30,14 @@ public class CPUHand {
         for (int i = 0; i < cPUCardsDeck.size(); i++) {
             System.out.println(cPUCardsDeck.get(i).kind + cPUCardsDeck.get(i).name);
         }
+    }
+
+    public void addingValuesCardsCPU(List<Cards> cPUCardsDeck) {
+        int sum = 0;
+        this.scoreOfCPU = sum;
+        for (int i = 0; i < cPUCardsDeck.size(); i++) {
+            scoreOfCPU = scoreOfCPU + cPUCardsDeck.get(i).value;
+        }
+        System.out.println("CPU score:"+scoreOfCPU);
     }
 }

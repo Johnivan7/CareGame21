@@ -11,6 +11,7 @@ public class Deck {
     List<Cards> cardDeck = new ArrayList<>();
     PlayerHand playerHand;
     CPUHand cpuHand;
+    Referee referee;
 
     Cards chervi2 = new Cards("chervi", 2, "2");
     Cards chervi3 = new Cards("chervi", 3, "3");
@@ -153,67 +154,56 @@ public class Deck {
         }
     }
 
-    public void addingValuesCardsPlayer(List<Cards> playerCardsDeck) {
-        int sum = 0;
-        for (int i = 0; i < playerCardsDeck.size(); i++) {
-            sum = sum + playerCardsDeck.get(i).value;
+    public boolean isTrueCommandCompareResults(String command) {
+        if (command.equals("Compare results")) {
+            return true;
+        } else {
+            return false;
         }
-        System.out.println("Player score:"+sum);
     }
 
-    public void addingValuesCardsCPU(List<Cards> cPUCardsDeck) {
-        int sum = 0;
-        for (int i = 0; i < cPUCardsDeck.size(); i++) {
-            sum = sum + cPUCardsDeck.get(i).value;
-        }
-        System.out.println("CPU score:"+sum);
-    }
 
     public void doingAll() {
         String command = scanner.nextLine();
-//        PlayerHand playerHand = new PlayerHand();
         if (isTrueCommandStartGame(command)) {
             createCartDeck();
             playerHand = new PlayerHand();
             cpuHand = new CPUHand();
-//            getOneCardForPlayer(playerCardsDeck);
-//            getOneCardForPlayer(playerCardsDeck);
+            referee = new Referee();
             playerHand.getOneCardForPlayerr(cardDeck, random);
             playerHand.getOneCardForPlayerr(cardDeck, random);
-
             cpuHand.getOneCardForCPU(cardDeck, random);
             cpuHand.getOneCardForCPU(cardDeck, random);
-//            showPlayerCardsOnHand(playerCardsDeck);
-
-
             playerHand.showPlayerCardsOnHand();
-            addingValuesCardsPlayer(playerHand.getPlayerCardsDeck());
+            playerHand.addingValuesCardsPlayer(playerHand.getPlayerCardsDeck());
             cpuHand.showCPUCardsOnHand();
-            addingValuesCardsCPU(cpuHand.getcPUCardsDeck());
+            cpuHand.addingValuesCardsCPU(cpuHand.getcPUCardsDeck());
             System.out.println(cardDeck.size());
             System.out.println(playerHand.getPlayerCardsDeck().size());
             System.out.println(cpuHand.getcPUCardsDeck().size());
-        }
-        else if (isTrueCommandGetOneCardPlayer(command)) {
-            playerHand.getOneCardForPlayerr(cardDeck,random);
+//            System.out.println(playerHand.addingValuesCardsPlayer(playerHand.getPlayerCardsDeck()));
+        } else if (isTrueCommandGetOneCardPlayer(command)) {
+            playerHand.getOneCardForPlayerr(cardDeck, random);
             playerHand.showPlayerCardsOnHand();
-            addingValuesCardsPlayer(playerHand.getPlayerCardsDeck());
+            playerHand.addingValuesCardsPlayer(playerHand.getPlayerCardsDeck());
             System.out.println(cardDeck.size());
             System.out.println(playerHand.getPlayerCardsDeck().size());
             System.out.println(cpuHand.getcPUCardsDeck().size());
         } else if (isTrueCommandGetOneCardCPU(command)) {
-            cpuHand.getOneCardForCPU(cardDeck,random);
+            cpuHand.getOneCardForCPU(cardDeck, random);
             cpuHand.showCPUCardsOnHand();
-            addingValuesCardsCPU(cpuHand.getcPUCardsDeck());
+            cpuHand.addingValuesCardsCPU(cpuHand.getcPUCardsDeck());
             System.out.println(cardDeck.size());
             System.out.println(playerHand.getPlayerCardsDeck().size());
             System.out.println(cpuHand.getcPUCardsDeck().size());
+        } else if (isTrueCommandCompareResults(command)) {
+            referee.compareResults(playerHand.scoreOfPlayer, cpuHand.scoreOfCPU);
         } else if(isTrueCommandExitGame(command)){
-            cardDeck.clear();
-            playerHand.getPlayerCardsDeck().clear();
-            cpuHand.getcPUCardsDeck().clear(); }
-            else {
-            System.out.println("You entered invalid information");
+        cardDeck.clear();
+        playerHand.getPlayerCardsDeck().clear();
+        cpuHand.getcPUCardsDeck().clear();}
+        else{
+        System.out.println("You entered invalid information");
         }
     }
 }

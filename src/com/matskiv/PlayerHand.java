@@ -1,5 +1,4 @@
 package com.matskiv;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -15,6 +14,9 @@ public class PlayerHand {
     }
 
     private List<Cards> playerCardsDeck;// = new ArrayList<>();
+
+    int scoreOfPlayer;// = addingValuesCardsPlayer(getPlayerCardsDeck());
+//    int Scori = addingValuesCardsPlayer(getPlayerCardsDeck());
 
     public void getOneCardForPlayerr(List<Cards> cartDeck, Random random ) {
         int choseCardPosition;
@@ -37,4 +39,18 @@ public class PlayerHand {
             System.out.println(playerCardsDeck.get(i).kind + playerCardsDeck.get(i).name);
         }
     }
+
+    public int addingValuesCardsPlayer(List<Cards> playerCardsDeck) {
+        int sum = 0;
+        this.scoreOfPlayer = sum;
+        for (int i = 0; i < playerCardsDeck.size(); i++) {
+            scoreOfPlayer = scoreOfPlayer + playerCardsDeck.get(i).value;
+        }
+        System.out.println("Player score:" + scoreOfPlayer);
+//        System.out.println("INT score of player: " + scoreOfPlayer);
+        return scoreOfPlayer;
+    }
+
+
+
 }
