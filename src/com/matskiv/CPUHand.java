@@ -33,8 +33,8 @@ public class CPUHand {
     }
 
     public void addingValuesCardsCPU(List<Cards> cPUCardsDeck) {
-        int sum = 0;
-        this.scoreOfCPU = sum;
+//        int sum = 0;
+        this.scoreOfCPU = 0;
         for (int i = 0; i < cPUCardsDeck.size(); i++) {
             scoreOfCPU = scoreOfCPU + cPUCardsDeck.get(i).value;
         }

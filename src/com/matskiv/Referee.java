@@ -14,11 +14,12 @@ public class Referee {
                 return "draw";
             }
         } else if (scoreOfPlayer <= 21) {
-            {
+
                 return "player";
-            }
-        } else if (scoreOfCPU <= 21) {
-            return "cpu";}
-            return "You dont write correct code for choose a winner";
+
+        } else  if (scoreOfCPU <= 21) {
+            return "cpu";
+        }
+        return "You don't write correct code for choose a winner";
     }
 }

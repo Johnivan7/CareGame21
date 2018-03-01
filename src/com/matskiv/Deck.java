@@ -197,26 +197,27 @@ public class Deck {
             System.out.println(playerHand.getPlayerCardsDeck().size());
             System.out.println(cpuHand.getcPUCardsDeck().size());
         } else if (isTrueCommandCompareResults(command)) {
-            if(referee.compareResults(playerHand.scoreOfPlayer, cpuHand.scoreOfCPU).equals("cpu")){
+            String compareResult = referee.compareResults(playerHand.scoreOfPlayer, cpuHand.scoreOfCPU);
+            if(compareResult.equals("cpu")){
                 System.out.println("Winner is a CPU");
                 System.out.println("CPU scores are " + cpuHand.scoreOfCPU);
                 System.out.println("Player scores are " + playerHand.scoreOfPlayer);
-            } else if(referee.compareResults(playerHand.scoreOfPlayer, cpuHand.scoreOfCPU).equals("player")){
+            } else if(compareResult.equals("player")){
                 System.out.println("Winner is a player");
                 System.out.println("CPU scores are " + cpuHand.scoreOfCPU);
                 System.out.println("Player scores are " + playerHand.scoreOfPlayer);
-            }else if(referee.compareResults(playerHand.scoreOfPlayer, cpuHand.scoreOfCPU).equals("draw")){
+            }else if(compareResult.equals("draw")){
                 System.out.println("There are no winner");
                 System.out.println("CPU scores are " + cpuHand.scoreOfCPU);
                 System.out.println("Player scores are " + playerHand.scoreOfPlayer);
             }
 
         } else if(isTrueCommandExitGame(command)){
-        cardDeck.clear();
-        playerHand.getPlayerCardsDeck().clear();
-        cpuHand.getcPUCardsDeck().clear();}
+            cardDeck.clear();
+            playerHand.getPlayerCardsDeck().clear();
+            cpuHand.getcPUCardsDeck().clear();}
         else{
-        System.out.println("You entered invalid information");
+            System.out.println("You entered invalid information");
         }
 
     }
