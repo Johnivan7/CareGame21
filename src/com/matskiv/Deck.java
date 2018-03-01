@@ -170,52 +170,52 @@ public class Deck {
             playerHand = new PlayerHand();
             cpuHand = new CPUHand();
             referee = new Referee();
-            playerHand.getOneCardForPlayerr(cardDeck, random);
-            playerHand.getOneCardForPlayerr(cardDeck, random);
-            cpuHand.getOneCardForCPU(cardDeck, random);
-            cpuHand.getOneCardForCPU(cardDeck, random);
-            playerHand.showPlayerCardsOnHand();
-            playerHand.addingValuesCardsPlayer(playerHand.getPlayerCardsDeck());
-            cpuHand.showCPUCardsOnHand();
-            cpuHand.addingValuesCardsCPU(cpuHand.getcPUCardsDeck());
+            playerHand.getOneCardForHand(cardDeck, random);
+            playerHand.getOneCardForHand(cardDeck, random);
+            cpuHand.getOneCardForHand(cardDeck, random);
+            cpuHand.getOneCardForHand(cardDeck, random);
+            playerHand.showDecksOnHand();
+            playerHand.addingValuesCardsHand(playerHand.getHandDeck());
+            cpuHand.showDecksOnHand();
+            cpuHand.addingValuesCardsHand(cpuHand.getHandDeck());
             System.out.println(cardDeck.size());
-            System.out.println(playerHand.getPlayerCardsDeck().size());
-            System.out.println(cpuHand.getcPUCardsDeck().size());
+            System.out.println(playerHand.getHandDeck().size());
+            System.out.println(cpuHand.getHandDeck().size());
 //            System.out.println(playerHand.addingValuesCardsPlayer(playerHand.getPlayerCardsDeck()));
         } else if (isTrueCommandGetOneCardPlayer(command)) {
-            playerHand.getOneCardForPlayerr(cardDeck, random);
-            playerHand.showPlayerCardsOnHand();
-            playerHand.addingValuesCardsPlayer(playerHand.getPlayerCardsDeck());
+            playerHand.getOneCardForHand(cardDeck, random);
+            playerHand.showDecksOnHand();
+            playerHand.addingValuesCardsHand(playerHand.getHandDeck());
             System.out.println(cardDeck.size());
-            System.out.println(playerHand.getPlayerCardsDeck().size());
-            System.out.println(cpuHand.getcPUCardsDeck().size());
+            System.out.println(playerHand.getHandDeck().size());
+            System.out.println(cpuHand.getHandDeck().size());
         } else if (isTrueCommandGetOneCardCPU(command)) {
-            cpuHand.getOneCardForCPU(cardDeck, random);
-            cpuHand.showCPUCardsOnHand();
-            cpuHand.addingValuesCardsCPU(cpuHand.getcPUCardsDeck());
+            cpuHand.getOneCardForHand(cardDeck, random);
+            cpuHand.showDecksOnHand();
+            cpuHand.addingValuesCardsHand(cpuHand.getHandDeck());
             System.out.println(cardDeck.size());
-            System.out.println(playerHand.getPlayerCardsDeck().size());
-            System.out.println(cpuHand.getcPUCardsDeck().size());
+            System.out.println(playerHand.getHandDeck().size());
+            System.out.println(cpuHand.getHandDeck().size());
         } else if (isTrueCommandCompareResults(command)) {
-            String compareResult = referee.compareResults(playerHand.scoreOfPlayer, cpuHand.scoreOfCPU);
+            String compareResult = referee.compareResults(playerHand.scoreOfHand, cpuHand.scoreOfHand);
             if(compareResult.equals("cpu")){
                 System.out.println("Winner is a CPU");
-                System.out.println("CPU scores are " + cpuHand.scoreOfCPU);
-                System.out.println("Player scores are " + playerHand.scoreOfPlayer);
+                System.out.println("CPU scores are " + cpuHand.scoreOfHand);
+                System.out.println("Player scores are " + playerHand.scoreOfHand);
             } else if(compareResult.equals("player")){
                 System.out.println("Winner is a player");
-                System.out.println("CPU scores are " + cpuHand.scoreOfCPU);
-                System.out.println("Player scores are " + playerHand.scoreOfPlayer);
+                System.out.println("CPU scores are " + cpuHand.scoreOfHand);
+                System.out.println("Player scores are " + playerHand.scoreOfHand);
             }else if(compareResult.equals("draw")){
                 System.out.println("There are no winner");
-                System.out.println("CPU scores are " + cpuHand.scoreOfCPU);
-                System.out.println("Player scores are " + playerHand.scoreOfPlayer);
+                System.out.println("CPU scores are " + cpuHand.scoreOfHand);
+                System.out.println("Player scores are " + playerHand.scoreOfHand);
             }
 
         } else if(isTrueCommandExitGame(command)){
             cardDeck.clear();
-            playerHand.getPlayerCardsDeck().clear();
-            cpuHand.getcPUCardsDeck().clear();}
+            playerHand.getHandDeck().clear();
+            cpuHand.getHandDeck().clear();}
         else{
             System.out.println("You entered invalid information");
         }
